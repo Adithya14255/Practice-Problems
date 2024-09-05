@@ -1,3 +1,4 @@
+# hackerrank id https://www.hackerrank.com/challenges/find-a-string/problem?isFullScreen=true
 def count_substring(string, sub_string):
     count=0
     temp=0
