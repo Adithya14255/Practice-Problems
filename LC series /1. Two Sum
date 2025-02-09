@@ -1,0 +1,10 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        wrong_list = {}
+        for i in range(len(nums)):
+            leftover = target - nums[i]
+            if leftover in wrong_list:
+                return [i,wrong_list[leftover]]
+            wrong_list[nums[i]]=i
+
+# got introduced to hashmaps
