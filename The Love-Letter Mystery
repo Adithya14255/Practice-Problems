@@ -1,4 +1,4 @@
-#!/bin/python3
+# when dealing with reverse iteration remember it starts from -1 not -0
 
 import math
 import os
