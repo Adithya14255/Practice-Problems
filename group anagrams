@@ -1,0 +1,14 @@
+# in python, lists, dicts are unhashable but strings are
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        hashmap = {}
+        for i in strs:
+            temp_arr = [0]*26
+            for j in i:
+                    temp_arr[ord(j)%26]+=1
+            temp_arr = str(temp_arr)
+            if temp_arr in hashmap:
+                hashmap[temp_arr].append(i)
+            else:
+                hashmap[temp_arr]=[i]
+        return [i for i in hashmap.values()]
