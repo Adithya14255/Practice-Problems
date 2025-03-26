@@ -1,0 +1,25 @@
+# sometimes drawing it out can help deal with bs conditions
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prod = 1
+        if 0 in nums:
+            if nums.count(0)==1:
+                for i in nums:
+                    if i!=0:
+                        prod*=i
+                return [prod if i==0 else 0 for i in nums]
+                
+            else:
+                return [0]*len(nums)
+        else:
+            left_arr = [nums[0]]
+            post = 1
+            for i in nums[1:]:
+                left_arr.append(left_arr[-1]*i)
+            for i in range(len(nums)-1,0,-1):
+                left_arr[i]=left_arr[i-1]*post
+                post*=nums[i]
+            left_arr[0]=post
+            return left_arr
+                
+                
