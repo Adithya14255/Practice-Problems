@@ -1,0 +1,11 @@
+# Maybe stuff requiring 2 loops can be done in one
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        buy_val = 101
+        profit = 0
+        for i in prices:
+            if i<buy_val:
+                buy_val=i
+            if i-buy_val > profit:
+                profit = i-buy_val
+        return profit
