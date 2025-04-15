@@ -24,6 +24,24 @@ class Solution:
                     r-=1
             water_hold +=i[l:r+1].count(0)
         return water_hold
+
+#Good sol - 
+        if len(height)==1:
+            return 0
+        l = 0
+        r = len(height)-1
+        water_hold = 0
+        lmax,rmax = height[l],height[r]
+        while l<r:
+            if height[l]<height[r]:
+                l += 1
+                lmax = max(lmax,height[l])
+                water_hold += lmax - height[l]
+            else:
+                r -= 1 
+                rmax = max(rmax,height[r])
+                water_hold += rmax-height[r]
+
+        return water_hold
                 
-            
                 
