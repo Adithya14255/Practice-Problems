@@ -1,0 +1,19 @@
+
+#include <stdio.h>
+int main()
+{
+ 
+    int a=2000,b=3000;
+    int temp = b;
+    int c=0;
+    while(temp>0){
+        temp/=10;
+        c++;
+    }
+    for(int i=1;i<=c;i++){
+        a*=10;
+    }
+    printf("%d",a+b);
+    
+    return 0;
+}
