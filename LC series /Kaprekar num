@@ -1,0 +1,40 @@
+
+#include <stdio.h>
+#include <math.h>
+
+int digitlen(int n){
+    int len = 0;
+    while (n){
+        n/=10;
+        len++;
+    }
+    printf("len %d\n",len);
+    return len;
+}
+
+int split(int n,int c,int inp){
+    int a = n%(int)pow(10,c);
+    int b = n/(int)pow(10,c);
+    printf("%d %d\n",b,a);
+    if (a==0 || b==0){
+        return 0;
+    }
+    else if ( a+b==inp ){
+        return 1;
+    }
+    return 0;
+}
+
+int main()
+{
+    int num = 297;
+    scanf("%d",&num);
+    int sq = num*num,digits = (digitlen(num)/2)+2;
+    int flag;
+    for (int i=digits;i>digits-2;i--){ 
+        flag = split(sq,i,num);
+        if(flag) break;
+    }
+    flag? printf("Kaprekar num"):printf("Not Kaprekar num");
+    return 0;
+}
