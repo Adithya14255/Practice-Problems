@@ -1,0 +1,142 @@
+
+#include <stdio.h>
+void swap(int *a,int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void print_matrix(int arr[3][3],int row,int col){
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            if(arr[i][j]!=-1) printf("%d ",arr[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+
+void transpose(int arr[3][3],int row,int col){
+    for(int i=0;i<row;i++){
+        for(int j=i;j<col;j++){
+            swap(&arr[i][j],&arr[j][i]);            
+        }
+    }
+    printf("\n");
+    print_matrix(arr,row,col);
+}
+
+
+void add_matrix(int arr[3][3],int arr2[3][3],int row1,int col1,int row2,int col2){
+    if(row1 != row2 || col1 != col2){
+        printf("invalid");
+        return;
+    }
+    int sum_arr[3][3] = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+    for(int i=0;i<row1;i++){
+        for(int j=0;j<col1;j++){
+            if (arr[i][j]!=-1 && arr2[i][j]!=-1) sum_arr[i][j] = arr[i][j] + arr2[i][j];            
+        }
+    }
+    print_matrix(sum_arr,3,3);
+}
+
+void mult_matrix(int arr[3][3],int arr2[3][3],int row1,int col1,int row2,int col2){
+     if (col1 != row2) {
+        printf("Matrix multiplication not possible\n");
+        return;
+    }
+    int prod_arr[row1][col2];
+    
+    for(int i=0;i<row1;i++){
+        for(int j=0;j<col2;j++){
+            prod_arr[i][j] = 0;
+            for(int k=0;k<col1;k++){
+                prod_arr[i][j]+= arr[k][j]*arr2[i][k];
+            }           
+        }
+    }
+    print_matrix(prod_arr,row1,col2);
+}
+
+void diagonal_sum_matrix(int arr[3][3],int row1,int col1){
+    int sum=0;
+    for(int i=0;i<row1;i++){
+        for(int j=0;j<col1;j++){
+            if(i+j == (col1-1) || i==j) sum+=arr[i][j];       
+        }
+    }
+    printf("%d\n",sum);
+}
+
+void print_spiral(int arr[5][5],int row,int col){
+    int top=0,bottom = row,right=col,left= 0;
+    while (1){
+        for(int i = left;i<right;i++){
+            printf("%d ",arr[top][i]);
+            
+        }top++;
+        if (top == bottom) break;
+        for(int i = top;i<bottom-1;i++){
+            printf("%d ",arr[i][right-1]);
+        }right--;
+        for(int i = right;i>=left;i--){
+            printf("%d ",arr[bottom-1][i]);
+        }bottom--;
+        for(int i = bottom-1;i>=top;i--){
+            printf("%d ",arr[i][left]);
+        }left++;
+    }
+}
+
+void sparse_matrix(int arr[3][3],int row,int col){
+    int valid_count= 0 ;
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            if(arr[i][j]>0) valid_count++;       
+        }
+    }
+    int sparse_mat[3][valid_count];
+    for(int i=0;i<row;i++){
+        for(int j=0;j<valid_count;j++){
+            sparse_mat[i][valid_count] = 0;       
+        }
+    }
+    int temp=0;
+    for(int i=0;i<row;i++){
+        for(int j=0;j<col;j++){
+            if(arr[i][j]>0){
+                sparse_mat[0][temp] = i;
+                sparse_mat[1][temp] = j;
+                sparse_mat[2][temp] = arr[i][j];
+                temp++;
+            }  
+        }
+    }
+    for(int i=0;i<row;i++){
+        for(int j=0;j<valid_count;j++){
+             printf("%d ",sparse_mat[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main()
+{
+    int arr[3][3] = {{1,2,3},{4,5,6},{7,8,9}};
+    int arr2[3][3] = {{1,2,3},{4,5,6},{7,8,9}};
+    print_matrix(arr,3,3);
+    printf("\n");
+    transpose(arr,3,3);
+    printf("\n");
+    add_matrix(arr,arr2,3,3,3,3);
+    printf("\n");
+    diagonal_sum_matrix(arr,3,3);
+    printf("\n");
+    mult_matrix(arr,arr2,3,3,3,3);
+    printf("\n");
+    print_spiral(arr,3,3);
+    printf("\n\nsparse matrix - \n");
+    sparse_matrix(arr,3,3);
+    return 0;
+}
