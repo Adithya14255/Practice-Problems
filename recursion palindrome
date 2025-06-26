@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int palindrome(char s[],int l,int r){
+    if (l>=r && s[l]==s[r]) return 1; 
+    if (s[l] == s[r]) palindrome(s,l+1,r-1);
+    else return -1;
+}
+
+int main()
+{
+    char s[] = "";
+    printf("%d ",palindrome(s,0,sizeof(s)-2));
+    
+    return 0;
+}
