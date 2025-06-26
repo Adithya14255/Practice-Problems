@@ -1,0 +1,31 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int binary_search(int arr[], int l,int r,int k){
+    int mid = l+(r-l)/2;
+    if (arr[mid]==k){
+        return mid;
+    }
+    else if(arr[mid]>k){
+        return binary_search(arr,l,mid-1,k);
+    }
+    else if (arr[mid]<k){
+        return binary_search(arr,mid+1,r,k);
+    }
+    return -1;
+}
+
+
+int main()
+{
+    int arr[10] = {1,2,3,4,5,6,7,8};
+    printf("%d",binary_search(arr,0,8,8));
+    return 0;
+}
