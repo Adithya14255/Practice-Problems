@@ -1,0 +1,19 @@
+# string ops are so dumb
+def checkInclusion(self, s1: str, s2: str) -> bool:
+        l = 0
+        while l<len(s2):
+            r=l+len(s1)
+            temp = [i for i in s2[l:r]]
+            print(temp)
+            count=0
+            for i in range(0,len(s1)):
+                if s1[i] in temp:
+                    count+=1
+                    temp.remove(s1[i])
+                    continue
+                else:
+                    l+=1
+                    break
+            if count == len(s1):
+                return True
+        return False

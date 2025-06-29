@@ -1,0 +1,16 @@
+# sometimes the "best" approach might be misleading
+
+def solve(n):
+    prime_factors = []
+    temp = n
+    div=2
+    while temp !=1 and div<=math.sqrt(temp):
+        while temp%div == 0:
+            temp//=div
+            prime_factors.append(div)
+        div +=1
+    if temp>1:
+        prime_factors.append(temp)
+    return 1 if sum([sum([int(j) for j in str(i)]) for i in prime_factors]) == sum([int(i) for i in str(n)]) else 0
+
+        

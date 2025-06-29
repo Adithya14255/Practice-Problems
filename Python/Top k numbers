@@ -1,0 +1,45 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count_map = {}
+        for i in nums:
+            if i in count_map:
+                count_map[i]+=1
+            else:
+                count_map[i]=1
+        ans = [0]*k
+        keyset = [i for i in count_map.keys()]
+        for i in range(k):
+            first = keyset[0]
+            temp = count_map[first] 
+            for j in keyset[1:]:
+                if count_map[j]>temp:
+                    ans[i]=j
+                    temp = count_map[j]
+            keyset.remove(ans[i])
+        return ans
+
+
+
+#or sometimes, you just need to know stuff
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count_map = {}
+        for i in nums:
+            if i in count_map:
+                count_map[i]+=1
+            else:
+                count_map[i]=1
+        bucket = [[] for _ in range(len(nums)+1)]
+        for val,cnt in count_map.items():
+            bucket[cnt].append(val)    
+        keys = []
+        for i in bucket[::-1]:
+            for j in i:
+                keys.append(j)
+                if len(keys) == k:
+                    return keys
+                
+
+
+
