@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+void print_internal(int n,int temp,int c){
+    if(temp>=1){
+        for(int i=n+c;i>n;i--){
+            printf("%d ",i);
+        }
+        for(int i=0;i<temp;i++){
+            printf("%d ",n);
+        }
+        for(int i=n+1;i<=n+c;i++){
+            printf("%d ",i);
+        }
+        printf("\n");
+        n--;
+        temp-=2;
+        c++;
+        print_internal(n,temp,c);
+    }
+    return;
+    
+}
+
+
+int main() 
+{
+
+    int n,temp=2;
+    scanf("%d", &n);
+    print_internal(n,2*n-1,0);
+    for(int i=0;i<n-1;i++){
+        for(int k=n;k>i+2;k--){
+            printf("%d ",k);
+        }
+        for(int j=2;j<=2*temp;j++){
+            printf("%d ",temp);
+        }
+        for(int k=i+3;k<=n;k++){
+            printf("%d ",k);
+        }
+        temp++;
+        printf("\n");
+    }
+    return 0;
+}
