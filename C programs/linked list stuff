@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+
+void insertEnd(struct Node** head, int value) {
+    struct Node* newNode = createNode(value);
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    struct Node * temp = *head;
+    while(temp->next != NULL){
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    return;        
+    
+}
+
+
+void display(struct Node* head) {
+    struct Node* f = head;
+    struct Node* t = head;
+    while (t->next != NULL){
+        printf("%d -> ", t->data);
+        if(f->next!=NULL) f = f->next->next;
+        t = t->next;
+        if(t-> next == f->next && f->next != NULL){
+            printf("loop exists");
+            f=head;
+            while(t->next!=f->next){
+              f=f->next;
+              t=t->next;
+            }
+            printf("\nloop ends at %d\n",t->data);
+            t->next = NULL;
+            return;
+        }
+        
+    }
+    printf("%d -> ", t->data);
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    int n, value;
+
+    // printf("Enter number of nodes: ");
+    // scanf("%d", &n);
+
+    // for(int i = 0; i < n; i++) {
+    //     printf("Enter value for node %d: ", i + 1);
+    //     scanf("%d", &value);
+    //     insertEnd(&head, value);
+    // }
+    insertEnd(&head, 3);
+    insertEnd(&head, 4);
+    insertEnd(&head, 5);
+    insertEnd(&head, 6);
+    insertEnd(&head, 7);
+    insertEnd(&head, 8);
+    insertEnd(&head, 9);
+    head->next->next->next->next->next->next->next = head->next->next->next;
+    printf("Linked list: ");
+    display(head);
+    display(head);
+
+    return 0;
+}
