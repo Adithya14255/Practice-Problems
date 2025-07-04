@@ -1,0 +1,134 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+
+struct Node* createNode(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+    return newNode;
+}
+
+
+void insertEnd(struct Node** head, int value) {
+    struct Node* newNode = createNode(value);
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+    struct Node * temp = *head;
+    while(temp->next != NULL){
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    return;        
+    
+}
+
+void rotateByK(struct Node ** head,int k){
+    for (int i=0;i<k;i++){
+    struct Node * prev = NULL;
+    struct Node * curr = *head;
+    while(curr->next!=NULL){
+        prev = curr;
+        curr = curr->next;
+    }
+    prev->next = NULL;
+    curr->next = *head;
+    *head = curr;
+    }
+}
+
+void palidrome(struct Node * head){
+    struct Node * f = head->next;
+    struct Node * s = head;
+    while(s!=NULL && f!=NULL && f->next!=NULL){
+        f = f->next->next;
+        s = s->next;
+    }
+    struct Node * head2 = s->next;
+    struct Node * temp = s->next;
+    s->next = NULL;
+    reversal(&head2);
+    int flag = 1;
+    while(head!=NULL && head2!=NULL){
+        if(head->data != head2->data){
+            flag=0;
+            break;
+        }
+        head = head->next;
+        head2 = head2->next;
+    }
+    reversal(&f);
+    s->next = temp;
+    flag?printf("It is Palindrome\n"):printf("\nNot Palindrome\n");
+    return;
+}
+
+void reversal(struct Node ** head){
+    struct Node * prev = NULL;
+    struct Node * curr = *head;
+    struct Node * next = *head;
+    while(curr!=NULL){
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    *head = prev;
+    return;
+}
+
+void display(struct Node* head) {
+    struct Node* f = head;
+    struct Node* t = head;
+
+    while (t->next != NULL){
+        printf("%d -> ", t->data);
+        if(f->next!=NULL){f = f->next;}
+        if(f->next!=NULL){f = f->next;}
+        t = t->next;
+        if(t-> next == f->next && f->next != NULL){
+            printf("loop exists");
+            f=head;
+            while(t->next!=f->next){
+              f=f->next;
+              t=t->next;
+            }
+            printf("\nloop ends at %d\n",t->data);
+            t->next = NULL;
+            return;
+        }
+        
+    }
+    printf("%d -> ", t->data);
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+    insertEnd(&head, 3);
+    insertEnd(&head, 4);
+    insertEnd(&head, 5);
+    insertEnd(&head, 5);
+    insertEnd(&head, 4);
+    insertEnd(&head, 3);
+    printf("Linked list: ");
+    display(head);
+    palidrome(head);
+    display(head);
+    rotateByK(&head,1);
+    printf("Rotated by k(1)\n");
+    display(head);
+    rotateByK(&head,3);
+    printf("Rotated by k(3)\n");
+    display(head);
+    return 0;
+}
