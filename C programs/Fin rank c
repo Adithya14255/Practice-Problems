@@ -1,0 +1,58 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+
+
+
+
+int main()
+{
+    int arr1[] = {5,5,5,5};
+    int arr2[] = {70,70,40,40,20,20,10,10};
+    int min;
+    int count = 0;
+    for(int i=0;i<(sizeof(arr2)/sizeof(arr2[0])-1);i++){
+        min=i;
+        for(int j=i+1;j<(sizeof(arr2)/sizeof(arr2[0]));j++){
+            if (arr2[min]>arr2[j]){
+                min = j;
+            }
+        }if(min!=i){
+            int temp = arr2[min];
+            arr2[min] = arr2[i];
+            arr2[i] = temp;
+        }
+    }
+    for(int i=1;i<(sizeof(arr2)/sizeof(arr2[0]));i++){
+        if (arr2[i]!=arr2[i-1]){
+          count++;
+          }
+    }
+    int arr3[count+2];
+    int j = 0;
+    for(int i=1;i<(sizeof(arr2)/sizeof(arr2[0]));i++){
+        if (arr2[i-1]!=arr2[i]){
+          arr3[j] = arr2[i-1];
+          j++;
+          }
+    }
+    arr3[j] = arr2[(sizeof(arr2)/sizeof(arr2[0]))-1];
+    arr3[j+1]=-1;
+    int fin = 0,rank = count+2;
+    j=0;
+    for(int i=0;i<(sizeof(arr1)/sizeof(arr1[0]));i++){
+        fin+=arr1[i];
+        while(arr3[j]!=-1 && fin>=arr3[j]){
+            j++;
+        }
+        printf("rank %d (%d)\n",rank-j,fin);
+    }
+
+    return 0;
+}
