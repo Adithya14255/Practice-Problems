@@ -1,0 +1,6 @@
+arr = [16, 17, 4, 3, 5, 2]
+res = [0]
+for i in arr[::-1]:
+    if i>res[-1]:
+        res.append(i)
+print(*res[:0:-1])
