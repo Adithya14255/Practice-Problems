@@ -1,0 +1,12 @@
+war = [70,70,40,40,20,20,10,10]
+coins = [120,0,0,0]
+war = sorted(set(war))
+war.append(-1)
+ranks = len(war)
+fin = 0
+j=0
+for i in coins:
+    fin+=i
+    while(war[j]!=-1 and fin>=war[j]):
+        j+=1
+    print(ranks-j)
