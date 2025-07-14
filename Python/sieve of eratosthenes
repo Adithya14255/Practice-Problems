@@ -1,0 +1,6 @@
+arr = [True for i in range(1000)]
+for i in range(2,1000):
+    if arr[i]:
+        for j in range(i*i,1000,i):
+            arr[j] = False
+        print(i)
