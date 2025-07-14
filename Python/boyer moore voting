@@ -1,0 +1,12 @@
+arr = [1,2,3,1,2,1,2,1,1]
+cand = -1
+count = 0
+for i in arr:
+    if count==0:
+        cand = i
+    if i == cand:
+        count+=1
+    else:
+        count-=1
+  
+print(cand,count)
