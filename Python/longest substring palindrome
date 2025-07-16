@@ -1,0 +1,18 @@
+a = "abcde"
+arr = []
+for i in a:
+    arr.append("#")
+    arr.append(i)
+arr.append('#')
+maxlen=1
+for i in range(len(arr)):
+    l=i-1
+    r=i+1
+    while(l>=0 and r<len(arr)):
+        if arr[l]==arr[r]:
+            l-=1
+            r+=1
+            maxlen = max(maxlen,r-i-1)
+        else:
+            break
+print(maxlen)
