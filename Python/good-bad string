@@ -1,0 +1,20 @@
+a = "aep?blcw"
+v=0
+c=0
+flag=1
+for i in a:
+    if c>=5 or v>=3:
+        print("Bad")
+        flag=0    
+        break
+    if i in "aeiou":
+        v+=1
+        c=0
+    elif i == "?":
+        c+=1
+        v+=1
+    else:
+        c+=1
+        v=0
+if flag:
+    print("good")
