@@ -1,0 +1,11 @@
+def gcd(a,b):
+    while a%b!=0:
+        temp = a
+        a = b
+        b = temp%b
+    return b
+
+a = 4
+b = 6
+c = gcd(b,a)
+print(a*b//c)
