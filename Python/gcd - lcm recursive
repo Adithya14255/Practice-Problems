@@ -1,0 +1,11 @@
+def gcd(a,b):
+    if(b==0):
+        return a
+    return gcd(b,a%b)
+
+
+a = 9787
+b = 209
+g = gcd(a,b)
+lcm = a*b//g
+print(a,b,g,lcm)
