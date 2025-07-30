@@ -1,0 +1,7 @@
+k = 4
+arr = [5,7,9,4,2,1,8,3]
+print(sorted(arr)[::-1][k-1])
+print(sorted(arr)[-k])
+#  auto input
+
+print(sorted(list(map(int,input("Enter the array").strip().split())))[::-1][int(input("Enter k:"))-1])
