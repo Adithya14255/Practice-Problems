@@ -1,3 +1,20 @@
 arr1 = [1,2,4,5,6,8,7,8,6]
 arr2 = [4,2,1,5,6,8,6,7,8]
+# O(nlogn)
 print(sorted(arr1) == sorted(arr2))
+
+# O(n)
+hashmap = {}
+for i in arr1:
+    if i not in hashmap:
+        hashmap[i] = 0
+    hashmap[i] +=1
+for i in arr2:
+    if i not in hashmap:
+        break
+    hashmap[i] -= 1
+if sum(hashmap.values()) == 0:
+    print("True")
+else:
+    print("False")
+    
