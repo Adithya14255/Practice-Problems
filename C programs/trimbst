@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Tree node definition
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+};
+
+// Utility to create a new node
+struct TreeNode* newNode(int val) {
+    struct TreeNode* node = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+    node->val = val;
+    node->left = node->right = NULL;
+    return node;
+}
+
+// Insert into BST
+struct TreeNode* insert(struct TreeNode* root, int val) {
+    if (root == NULL) return newNode(val);
+    if (val < root->val)
+        root->left = insert(root->left, val);
+    else
+        root->right = insert(root->right, val);
+    return root;
+}
+
+// Function you will implement
+struct TreeNode* trimBST(struct TreeNode* root, int low, int high) {
+    // TODO: implement trimming logic
+    if(root == NULL) return NULL;
+    if(root->val<low){
+        return trimBST(root->right,low,high);
+    }
+    if(root->val>high){
+        return trimBST(root->left,low,high);
+    }
+    root->right = trimBST(root->right,low,high);
+    root->left = trimBST(root->left,low,high);
+    return root;
+}
+
+// Print BST level by level
+void printLevel(struct TreeNode* root, int level) {
+    if (root == NULL) {
+        printf("  ");
+        return;
+    }
+    if (level == 1) {
+        printf("%d", root->val);
+    } else if (level > 1) {
+        printLevel(root->left, level - 1);
+        printf(" ");
+        printLevel(root->right, level - 1);
+    }
+}
+
+int height(struct TreeNode* root) {
+    if (root == NULL) return 0;
+    int lh = height(root->left);
+    int rh = height(root->right);
+    return (lh > rh ? lh : rh) + 1;
+}
+
+void printTree(struct TreeNode* root) {
+    int h = height(root);
+    for (int i = 1; i <= h; i++) {
+        printLevel(root, i);
+        printf("\n");
+    }
+}
+
+int main() {
+    struct TreeNode* root = NULL;
+
+    // Static values to build BST
+    int values[] = {8, 3, 10, 1, 6, 14, 4, 7, 13};
+    int n = sizeof(values) / sizeof(values[0]);
+
+    for (int i = 0; i < n; i++) {
+        root = insert(root, values[i]);
+    }
+
+    int low = 5, high = 13;  // Static trim range
+
+    printf("Original BST:\n");
+    printTree(root);
+
+    root = trimBST(root, low, high);
+
+    printf("\nTrimmed BST:\n");
+    printTree(root);
+
+    return 0;
+}
