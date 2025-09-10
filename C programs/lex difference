@@ -4,24 +4,25 @@
 
 int main()
 {
-    int j=0,suma=0,sumb=0;
+    int j=0;
+    char ca,cb;
     char a[101],b[101];
     scanf("%s",a);
     scanf("%s",b);
     while(j<(int)strlen(a)){
         if(tolower(a[j]) != tolower(b[j])){
-            suma += tolower(a[j]);
-            sumb += tolower(b[j]);
+            ca = tolower(a[j]);
+            cb = tolower(b[j]);
         }
         j++;
     }
-    if(suma==sumb){
+    if(ca==cb){
         printf("0");
     }
-    else if(suma>sumb){
-        printf("1");
-    }else{
+    else if(ca>cb){
         printf("-1");
+    }else{
+        printf("1");
     }
         
     
