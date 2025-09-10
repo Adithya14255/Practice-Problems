@@ -1,0 +1,29 @@
+#include <ctype.h>
+#include <string.h>
+#include <stdio.h>
+
+int main()
+{
+    int j=0,suma=0,sumb=0;
+    char a[101],b[101];
+    scanf("%s",a);
+    scanf("%s",b);
+    while(j<(int)strlen(a)){
+        if(tolower(a[j]) != tolower(b[j])){
+            suma += tolower(a[j]);
+            sumb += tolower(b[j]);
+        }
+        j++;
+    }
+    if(suma==sumb){
+        printf("0");
+    }
+    else if(suma>sumb){
+        printf("1");
+    }else{
+        printf("-1");
+    }
+        
+    
+    return 0;
+}
