@@ -1,0 +1,12 @@
+class Solution:
+    def bitonicGenerator(self, arr):
+        # Your code goes here
+        even_elements = []
+        odd_elements = []
+        for i in range(len(arr)):
+            if i%2==0:
+                even_elements.append(arr[i])
+            else:
+                odd_elements.append(arr[i])
+        
+        return sorted(even_elements) + sorted(odd_elements)[::-1]
