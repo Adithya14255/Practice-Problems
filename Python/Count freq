@@ -1,0 +1,12 @@
+class Solution:
+    def countFreq(self, arr):
+        #code here
+        count_arr = []
+        index_list = {}
+        for i,n in enumerate(set(arr)):
+            count_arr.append([n,0])
+            index_list[n] = i
+        for i in arr:
+            count_arr[index_list[i]][1]+=1
+        return count_arr
+        
