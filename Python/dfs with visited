@@ -1,0 +1,24 @@
+class Solution:
+    check_list = [(-1,0),(1,0),(0,-1),(0,1)]
+    def dfs(self,board,i,j,m,n,word,temp,visited):
+        if temp == len(word):
+            return True
+        visited[i][j] = 1
+        for a,b in self.check_list:
+            dx = i + a
+            dy = j + b
+            if 0<=dx<m and 0<=dy<n and board[dx][dy] == word[temp] and visited[dx][dy] == 0:
+                if self.dfs(board,dx,dy,m,n,word,temp+1,visited):
+                    return True
+        visited[i][j] = 0
+        return False
+        
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        temp = 0
+        visited = [[0 for _ in range(len(board[0]))] for _ in range(len(board))]
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == word[temp]:
+                    if self.dfs(board,i,j,len(board),len(board[0]),word,temp+1,visited):
+                        return True
+        return False
