@@ -1,0 +1,15 @@
+string = "PROGRAM"
+l = 0
+r = len(string) - 1
+while r>=0:
+    for i in range(len(string)):
+        if i == l:
+            print(string[i],end=" ")
+        elif i == r:
+            print(string[r],end=" ")
+        else:
+            print(" ",end=" ")
+    print("\n")
+    l+=1
+    r-=1
+            
