@@ -1,0 +1,20 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        s = s.split()
+        if len(s) != len(pattern):
+            return False
+        mapping = dict()
+        mapping2 = dict()
+        ptr = 0
+        for i in s:
+            if pattern[ptr] in mapping.keys():
+                if mapping[pattern[ptr]] != i:
+                    return False
+            if i in mapping2.keys():
+                if mapping2[i] != pattern[ptr]:
+                    return False
+            mapping[pattern[ptr]] = i
+            mapping2[i] = pattern[ptr]
+            ptr+=1
+            
+        return True
