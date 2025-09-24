@@ -4,17 +4,11 @@ class Solution:
         if len(s) != len(pattern):
             return False
         mapping = dict()
-        mapping2 = dict()
-        ptr = 0
-        for i in s:
-            if pattern[ptr] in mapping.keys():
-                if mapping[pattern[ptr]] != i:
+        for i in range(len(s)):
+            if pattern[i] in mapping.keys():
+                if mapping[pattern[i]] != s[i]:
                     return False
-            if i in mapping2.keys():
-                if mapping2[i] != pattern[ptr]:
+            elif s[i] in mapping.values():
                     return False
-            mapping[pattern[ptr]] = i
-            mapping2[i] = pattern[ptr]
-            ptr+=1
-            
+            mapping[pattern[i]] = s[i]            
         return True
