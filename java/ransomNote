@@ -1,0 +1,16 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        if (ransomNote.length() > magazine.length()) return false;
+        int[] alphabetCount = new int[26];
+        for(char x:magazine.toCharArray()){
+            alphabetCount[x-'a']++;
+        }
+        for(char y:ransomNote.toCharArray()){
+            alphabetCount[y-'a']--;
+            if(alphabetCount[y-'a']<0){
+                return false;
+            }
+        }
+        return true;
+    }
+}
