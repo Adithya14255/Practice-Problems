@@ -1,0 +1,20 @@
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int a=0,b=0,c=0;
+        a = sc.nextInt();
+        int ans = 0;
+        int max = 0;
+        for(int i=0;i<a;i++){
+            b = sc.nextInt();
+            c = sc.nextInt();
+            ans-=b;
+            ans+=c;
+            if(ans>max){
+                max = ans;
+            }
+        }
+        System.out.println(max);
+    }
+}
