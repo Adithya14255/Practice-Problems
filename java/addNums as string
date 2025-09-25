@@ -1,0 +1,37 @@
+class Solution {
+
+    String addNums(String num1,String num2){
+        int carry = 0;
+        String s = "";
+        for(int i=0;i<num1.length();i++){
+            int temp = (num1.charAt(i) - '0') + (num2.charAt(i) - '0');
+            if(temp+carry > 9){
+                s += String.valueOf(temp-10 + carry);
+                carry = 1;
+            }else{
+                s += String.valueOf(temp+carry);
+                carry = 0;
+            }
+        }
+        for(int i=num1.length();i<num2.length();i++){
+            int temp = num2.charAt(i) - '0';
+            if (temp+carry > 9){
+                s+= String.valueOf(temp-10+carry);
+                carry = 1;
+            }else{
+                s += String.valueOf(temp+carry);
+                carry = 0;
+            }
+        }
+        if (carry == 1) s += "1";
+        return new StringBuilder(s).reverse().toString();
+    }
+
+    public String addStrings(String num1, String num2) {
+        num1 = new StringBuilder(num1).reverse().toString();
+        num2 = new StringBuilder(num2).reverse().toString();
+        if (num1.length()<=num2.length()) return addNums(num1,num2);
+        else return addNums(num2,num1);
+
+    }
+}
