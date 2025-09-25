@@ -1,0 +1,47 @@
+class Solution {
+    public char findTheDifference(String s, String t) {
+        List<Character> hs = new ArrayList<>();
+        for(char x:s.toCharArray()){
+            hs.add(x);
+        }
+        for(char y:t.toCharArray()){
+            if(hs.contains(y)){
+                hs.remove((Character)y);
+            }
+            else{
+            return y;
+        }}
+        return 'a';
+    }
+}
+
+
+class Solution {
+    public char findTheDifference(String s, String t) {
+        List<Character> hs = new ArrayList<>();
+        int[] alphabetCount = new int[26];
+        for(char x:s.toCharArray()){
+            alphabetCount[x-'a']++;
+        }
+        for(char y:t.toCharArray()){
+            alphabetCount[y-'a']--;
+            if(alphabetCount[y-'a']<0){
+                return y;
+            }
+        }
+        return 'a';
+    }
+}
+
+class Solution {
+    public char findTheDifference(String s, String t) {
+        int ans=0;
+        for(char x:s.toCharArray()){
+            ans^=x;
+        }
+        for(char y:t.toCharArray()){
+            ans^=y;
+        }
+        return (char)ans;
+    }
+}
