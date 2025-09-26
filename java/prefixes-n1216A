@@ -1,0 +1,33 @@
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        int count = 0;
+        char[] temp = sc.nextLine().toCharArray();
+        int aCount = 0,bCount = 0;
+        for(int i=0;i<temp.length;i++){
+            if(temp[i] == 'a') aCount++;
+            if(temp[i] == 'b') bCount++;
+            if((i+1)%2 == 0){
+            if (aCount>bCount){
+                temp[i] = 'b';
+                aCount--;
+                bCount++;
+                count++;
+            }
+            else if(bCount>aCount){
+                temp[i] = 'a';
+                aCount++;
+                bCount--;
+                count++;
+            }
+                
+            }
+        }
+        System.out.println(count);
+        System.out.println(new String(temp));
+        }
+        
+}
