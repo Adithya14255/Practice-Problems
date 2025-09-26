@@ -1,0 +1,39 @@
+class Solution {
+    public int nearestValidPoint(int x, int y, int[][] points) {
+        HashMap<Integer,List<int[]>> map = new HashMap<>();
+        HashMap<int[],Integer> idx = new HashMap<>();
+        int min = 10000,val=0;
+        for(int i=0;i<points.length;i++){
+            if(x == points[i][0] || y == points[i][1]){
+             val = Math.abs(x-points[i][0]) + Math.abs(y-points[i][1]);
+             if (min > val){
+                min = val;
+                map.clear();
+             }
+             if(val == min){
+                 map.computeIfAbsent(val,k -> new ArrayList<>()).add(points[i]);
+                 idx.put(points[i],i);
+            }
+            }
+        }
+        return map.containsKey(min)?idx.get(map.get(min).get(0)):-1;
+    }
+}
+
+// easy way
+class Solution {
+    public int nearestValidPoint(int x, int y, int[][] points) {
+        int min = 10000;
+        int idx = -1;
+        for(int i=0;i<points.length;i++){
+            if (x == points[i][0] || y == points[i][1]){
+                int val = Math.abs(x-points[i][0]) + Math.abs(y-points[i][1]);
+                if (val < min){
+                    min = val;
+                    idx = i;
+                }
+            }
+        }
+        return idx;
+    }
+}
