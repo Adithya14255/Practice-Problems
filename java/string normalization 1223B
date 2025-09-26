@@ -1,0 +1,26 @@
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        for(int i=0;i<n;i++){
+            int flag = 0;
+            char[] temp1 = sc.nextLine().toCharArray();
+            char[] temp2 = sc.nextLine().toCharArray();
+            
+            for(char x:temp1){
+                for(char y:temp2){
+                if(x==y){
+                    flag = 1;
+                    break;
+                }
+                if(flag == 1) break;
+                }
+            }
+            if(flag==1) System.out.println("YES");
+            else System.out.println("NO");
+        }
+        
+    }
+}
