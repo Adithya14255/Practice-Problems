@@ -1,0 +1,20 @@
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        for(int k=0;k<n;k++){
+            int c = 0;
+            char[] temp1 = "codeforces".toCharArray();
+            char[] temp = sc.nextLine().toCharArray();
+            for(int i=0;i<temp.length;i++){
+                if(temp[i] != temp1[i]) c++;
+            }
+            System.out.println(c);
+            
+            
+        }
+        
+    }
+}
