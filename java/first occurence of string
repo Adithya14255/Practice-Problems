@@ -1,0 +1,16 @@
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int idx = 0,i = 0;
+        while(i<haystack.length()){
+            if(haystack.charAt(i) == needle.charAt(idx)){
+                idx++;
+                i++;
+                if(idx == needle.length()) return i-idx;
+            }else{
+                i = i - idx + 1;
+                idx = 0;
+            }
+        }
+        return -1;
+    }
+}
