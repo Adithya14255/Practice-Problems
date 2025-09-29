@@ -1,0 +1,27 @@
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        for(int k=0;k<n;k++){
+            int flag = 1;
+            char[] temp = sc.nextLine().toCharArray();
+            if (temp.length %2 != 0){
+                System.out.println("NO");
+            }else{
+            int mid = (temp.length/2);
+            for(int i=0;i<mid;i++){
+                if(temp[i]!=temp[i+mid]){
+                    flag = 0;
+                    break;
+                }
+            }
+            if(flag==1) System.out.println("YES");
+            else System.out.println("NO");
+            }
+            
+        }
+        
+    }
+}
