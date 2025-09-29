@@ -1,0 +1,13 @@
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        for(int k=0;k<n;k++){
+            String[] strings = sc.nextLine().split(" ");
+            System.out.println(strings[1].charAt(0)+strings[0].substring(1)+" "+strings[0].charAt(0)+strings[1].substring(1));
+        }
+        
+    }
+}
