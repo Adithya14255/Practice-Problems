@@ -1,0 +1,21 @@
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        HashSet<String> diary = new HashSet<>();
+        for(int k=0;k<n;k++){
+            String temp = sc.nextLine();
+            if(diary.contains(temp)){
+                System.out.println("NO");
+            }
+            else{
+             System.out.println("YES");
+             diary.add(temp);
+            }
+            
+        }
+        
+    }
+}
