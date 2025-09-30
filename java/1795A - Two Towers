@@ -64,3 +64,29 @@ public class Solution {
         return true;
     }
 }
+
+# much better approach
+import java.util.*;
+public class Solution{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+        for(int k=0;k<n;k++){
+            sc.nextLine();
+            String t1 = sc.nextLine();
+            String t2 = sc.nextLine();
+            String t3 = t1 + new StringBuilder(t2).reverse().toString();
+            int c = 0;
+            for(int i=0;i<t3.length()-1;i++){
+                if(t3.charAt(i) == t3.charAt(i+1)){
+                    c++;
+                }
+                
+            }
+            if(c>1) System.out.println("NO");
+            else System.out.println("YES");
+        }
+        
+    }
+}
