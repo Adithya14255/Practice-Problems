@@ -1,0 +1,13 @@
+class Solution {
+    public boolean hasMatch(String s, String p) {
+        int l=0,r=0;
+        while(p.charAt(l)!= '*') l++;
+        String s1 = p.substring(0,l),s2 = p.substring(l+1);
+        
+        if ((s1.length()>0 && s.indexOf(s1) == -1) || (s2.length()>0 && s.lastIndexOf(s2) == -1)) return false;
+        if (s2.length() > 0 && s1.length()>0 && s.indexOf(s1)+s1.length() > s.lastIndexOf(s2)) return false;
+        return true;
+
+        
+    }
+}
