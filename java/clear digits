@@ -1,0 +1,19 @@
+class Solution {
+    public String clearDigits(String s) {
+       StringBuilder str = new StringBuilder(s);
+       int l = 0,r = 0;
+       while(r<str.length()){
+            if(l==r) r++;
+            else if(Character.isLetter(str.charAt(r))){
+                r++;
+                l++;
+            }else{
+                str.deleteCharAt(r);
+                str.deleteCharAt(l);
+                l--;r--;
+            }
+        }
+       return str.toString(); 
+    }
+
+}
