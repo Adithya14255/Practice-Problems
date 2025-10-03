@@ -1,0 +1,10 @@
+class Solution {
+    public int findPermutationDifference(String s, String t) {
+        int[] alphaIdx = new int[26];
+        int sum = 0;
+        for(int i=0;i<s.length();i++) alphaIdx[s.charAt(i) - 'a'] = i; 
+        for(int i=0;i<t.length();i++) sum += Math.abs(alphaIdx[t.charAt(i) - 'a'] - i); 
+
+        return sum;
+    }
+}
