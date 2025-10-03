@@ -1,0 +1,23 @@
+class Solution {
+    public int minValidStrings(String[] words, String target) {
+        int[] str = new int[target.length()+1];
+        Arrays.fill(str,Integer.MAX_VALUE);
+        str[0] = 0;
+        for(int i=0;i<target.length();i++){
+            if(str[i] == Integer.MAX_VALUE) continue;
+            for(String x:words){
+                int j=i;
+                int temp = 0;
+                while(j<target.length() && temp < x.length() && target.charAt(j) == x.charAt(temp)){
+                    j++;
+                    temp++;
+                    str[j] = Math.min(str[j],str[i]+1);
+                }
+            }
+        }
+        System.out.println(Arrays.toString(str));
+        if(str[target.length()]==Integer.MAX_VALUE)
+            return -1;
+        return str[target.length()];
+    }
+}
