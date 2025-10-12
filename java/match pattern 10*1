@@ -1,0 +1,19 @@
+static int MatchPattern(String str) throws java.lang.Exception
+{
+    /* Write your code here. */
+    int count = 0;
+    int prev = -1;
+    for(int i=0;i<str.length();i++){
+        if(str.charAt(i) == '1'){
+        System.out.println(i+" "+prev+" "+count);
+            if(prev!=i && prev!=-1){
+                count++;
+            }
+            prev = i;
+            
+        }else if(str.charAt(i)!='0'){
+                prev = -1;
+        }
+    }
+    return count;
+}
