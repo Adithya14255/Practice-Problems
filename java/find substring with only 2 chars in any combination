@@ -1,0 +1,27 @@
+static String FindSubstring(String str) throws java.lang.Exception
+{    
+    char prev = str.charAt(0),curr = str.charAt(1),t=2;
+    int count = 2,maxcount = 2,start = 0,end = 1;
+    while(prev == curr){
+        curr = str.charAt(++t);
+        count++;
+    }
+    for(int i=t;i<str.length();i++){
+        char temp = str.charAt(i);
+        if(temp == prev || temp == curr){
+            count++;
+            if (count>maxcount){
+                maxcount = count;
+                end = i;
+                start = end-count+1;
+            }
+        }else{
+            prev = curr;
+            curr = str.charAt(i);
+            count = 2;
+        }
+        System.out.println(prev+" "+curr+" "+i+" "+start+" "+end+" "+count);
+    }
+    /* Write your code here. */
+    return str.substring(start,end+1);
+}
