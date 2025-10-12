@@ -1,3 +1,5 @@
+// not crct
+
 static String FindSubstring(String str) throws java.lang.Exception
 {    
     char prev = str.charAt(0),curr = str.charAt(1),t=2;
