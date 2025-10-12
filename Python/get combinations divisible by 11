@@ -1,0 +1,19 @@
+def get_combinations(string,length):
+	list1 = []
+	for i in range(0,len(string)-length+1):
+		list1.append(int(string[i:i+length]))
+	return list1
+def DivisibilityByEleven(num):
+    # Write your code here.
+	all_perms = set()
+	all_perms.add(num)
+	for i in range(1,len(str(num))):
+		stuff = get_combinations(str(num),i)
+		for j in stuff:
+			all_perms.add(j)
+	count = 0
+	for i in all_perms:
+		if i%11 == 0:
+			count+=1
+	print(all_perms)
+	return count
