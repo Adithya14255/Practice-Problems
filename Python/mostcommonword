@@ -1,0 +1,20 @@
+class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        mapping = dict()
+        punct = "!\"#$%&'()*+,-./:;?@[\]^_`{|}~"
+        for i in punct:
+            paragraph = paragraph.replace(i,' ')
+        maxval = None
+        maxcount = -1
+        for i in paragraph.split():
+            if i.lower() not in banned:
+                temp = i.lower()
+                if temp not in mapping:
+                    mapping[temp] = 0
+                mapping[temp]+=1
+                if mapping[temp] > maxcount:
+                    maxcount = mapping[temp]
+                    maxval = temp
+        print(mapping)
+        return maxval  
+            
